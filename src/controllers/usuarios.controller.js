@@ -209,7 +209,7 @@ export const iniciarSesion = async (req, res) => {
     if (!user) {
       return res.status(401).json({ message: 'Credenciales incorrectas' })
     }
-
+    console.log('user', user)
     // verificando password
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) {
@@ -217,8 +217,9 @@ export const iniciarSesion = async (req, res) => {
     }
     const token = jwt.sign({ id: user.id_user }, SECRET_KEY, { expiresIn: '1h' })
     /* localStorage.setItem('tk', token) */
+    const datosRes = { tk: token, data: user.rol_type }
     res.setHeader('Authorization', `Bearer ${token}`)
-    res.json({ message: 'Inicio de sesión exitoso', token })
+    res.json({ message: 'Inicio de sesión exitoso', datosRes })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

@@ -36,7 +36,7 @@ const consultarTabla = async (tabla) => {
 
 const where = async (columna, valor) => {
   const [usuario] = await pool.execute(
-    `SELECT id_user,nombre, apellidos, telefono, correo, password FROM usuarios WHERE ${columna} = ?`, [valor]
+    `SELECT id_user,nombre, apellidos, telefono, correo, password, rol_type FROM usuarios WHERE ${columna} = ?`, [valor]
   )
   console.log(usuario)
 

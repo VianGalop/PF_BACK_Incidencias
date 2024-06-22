@@ -75,9 +75,9 @@ export const buscarInciPorUsuario = async (req, res) => {
     }
     if (result !== undefined) { return res.json(result) }
 
-    res.json({ message: 'No se encontro informacion...' })
+    return res.json(result)
   } catch (error) {
-    res.json({ message: 'Error interno de busqueda' })
+    return res.json({ message: 'Error interno de busqueda' })
   }
 }
 
